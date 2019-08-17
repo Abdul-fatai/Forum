@@ -20,7 +20,7 @@ class SocialsController extends Controller
             $user->save();
         });
 
-        return redirect('/home');
+        return redirect('/forum');
     }
 
 
