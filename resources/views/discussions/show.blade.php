@@ -38,9 +38,11 @@
             </div>
 
             <div class="card-footer">
-                <p>
-                    Like
-                </p>
+                @if($r->is_liked_by_auth_user())
+                    <a href="{{ route('reply.unlike', ['id' => $r->id ]) }}" class="btn btn-danger">Unlike <span class="badge badge-light">{{ $r->likes->count()}}</span></a>
+                @else
+                    <a href="{{ route('reply.like', ['id' => $r->id ]) }}" class="btn btn-success">Like <span class="badge badge-light">{{ $r->likes->count()}}</span></a>
+                @endif
             </div>
     </div>
     @endforeach
@@ -53,7 +55,7 @@
 
                 <div class="form-group">
                     <label for="repy">Leave a reply...</label>
-                    <textarea name="content" id="" cols="30" rows="10" class="form-control">
+                    <textarea name="content" id="" cols="20" rows="5" class="form-control">
                     </textarea>
                 </div>
 
