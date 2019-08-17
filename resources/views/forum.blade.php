@@ -6,11 +6,25 @@
 
         <div class="card mb-3">
             <div class="card-header">
-                <img src="{{ $d->user->avatar }}" alt="" width="70px" height="70px">
+                <img src="{{ $d->user->avatar }}" alt="" width="40px" height="40px">&nbsp;&nbsp;
+                <span>{{ $d->user->name }}</span>
+                <a href="{{ route('discussion', ['slug' => $d->slug]) }}" class="btn btn-primary float-right">View</a>
             </div>
 
             <div class="card-body">
-                {{ $d->content }}
+               <h4 class="text-center">
+                    {{ $d->title }}
+                </h4> 
+
+                <p class="text-center">
+                    {{ str_limit($d->content, 50) }}
+                </p>
+            </div>
+
+            <div class="card-footer">
+                <p>
+                    {{ $d->replies->count() }} Replies
+                </p>
             </div>
         </div>
 
