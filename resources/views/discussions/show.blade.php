@@ -49,20 +49,27 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('discussion.reply', ['id' => $d->id ])}}" method="POST">
+            @if(Auth::check())
+                <form action="{{ route('discussion.reply', ['id' => $d->id ])}}" method="POST">
 
-                    {{ csrf_field() }}
+                        {{ csrf_field() }}
 
-                <div class="form-group">
-                    <label for="repy">Leave a reply...</label>
-                    <textarea name="content" id="" cols="20" rows="5" class="form-control">
-                    </textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="repy">Leave a reply...</label>
+                        <textarea name="content" id="" cols="20" rows="5" class="form-control">
+                        </textarea>
+                    </div>
 
-                <div class="form-group">
-                    <button class="btn btn-primary" type="submit">Comment</button>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Comment</button>
+                    </div>
+                </form>
+
+            @else
+
+            <h3>Sign in to leave a reply</h3>
+
+            @endif
         </div>
     </div>
 @endsection
