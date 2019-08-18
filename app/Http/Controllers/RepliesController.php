@@ -17,7 +17,7 @@ class RepliesController extends Controller
             'user_id' => Auth::id()
         ]);
 
-        Session::flash('success', 'You likes the reply');
+        Session::flash('success', 'You liked the reply');
 
         return redirect()->back();
     }
@@ -40,6 +40,9 @@ class RepliesController extends Controller
         $reply->best_answer = 1;
 
         $reply->save();
+
+        $reply->user->points += 100;
+        $reply->user->save();
 
         Session::flash('success', 'Reply marked as best answer.');
 

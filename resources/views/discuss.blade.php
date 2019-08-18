@@ -11,7 +11,7 @@
 
                 <div class="form-group">
                     <label for="title">Title </label>
-                    <input type="text" class="form-control" name="title">
+                    <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                 </div>
                 <div class="form-group">
                     <label for="channel">Pick a channel</label>
@@ -24,11 +24,11 @@
 
                 <div class="form-group">
                     <label for="content">Ask a question</label>
-                    <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ old('content')}}</textarea>
                 </div>
                 
-                <div class="form-group">
-                    <button class="btn btn-primary pull-center">Create discussion</button>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary">Create discussion</button>
                 </div>
            </form>
         </div>
