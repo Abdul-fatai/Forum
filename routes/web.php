@@ -34,6 +34,11 @@ Route::get('discussion/{slug}', [
     'as' => 'discussion'
 ]);
 
+Route::get('channel/{slug}', [
+    'uses' => 'ForumsController@channel',
+    'as' => 'channel'
+]);
+
 
 Route::group(['middleware' => 'auth'], function(){
 
