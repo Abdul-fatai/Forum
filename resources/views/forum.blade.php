@@ -22,9 +22,11 @@
             </div>
 
             <div class="card-footer">
-                <p>
+                <span>
                     {{ $d->replies->count() }} Replies
-                </p>
+                </span>
+
+                <a href="{{ route('channel', ['slug' => $d->channel->slug ]) }}" class="btn btn-primary btn-sm float-right">{{ $d->channel->title}}</a>
             </div>
         </div>
 
