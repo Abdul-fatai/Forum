@@ -86,4 +86,14 @@ Route::group(['middleware' => 'auth'], function(){
         'as' => 'discussion.best.anwser'
     ]);
 
+    Route::get('/discussions/edit/{slug}', [
+        'uses' => 'DiscussionsController@edit',
+        'as' => 'discussion.edit'
+    ]);
+
+    Route::post('/discussions/update/{id}', [
+        'uses' => 'DiscussionsController@update',
+        'as' => 'discussions.update'
+    ]);
+
 });

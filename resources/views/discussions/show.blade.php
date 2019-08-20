@@ -11,7 +11,10 @@
                     <span class="btn btn-danger btn-sm float-right  ml-2">open</span>
                 @endif
                
-                
+                @if(Auth::id() == $d->user->id )
+                    <a href="{{ route('discussion.edit', ['slug' => $d->slug ]) }}" class="btn btn-primary btn-sm float-right ml-2">Update</a>
+                @endif
+
                 @if($d->is_being_watched_by_auth_user())
                     <a href="{{ route('discussion.unwatch', ['id' => $d->id ]) }}" class="btn btn-primary btn-sm float-right">unwatch</a>
                 @else
