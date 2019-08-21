@@ -12,7 +12,9 @@
                 @endif
                
                 @if(Auth::id() == $d->user->id )
-                    <a href="{{ route('discussion.edit', ['slug' => $d->slug ]) }}" class="btn btn-primary btn-sm float-right ml-2">Update</a>
+                    @if(!$d->hasBestAnswer())
+                        <a href="{{ route('discussion.edit', ['slug' => $d->slug ]) }}" class="btn btn-primary btn-sm float-right ml-2">Update</a>  
+                    @endif
                 @endif
 
                 @if($d->is_being_watched_by_auth_user())
@@ -67,8 +69,14 @@
                 <span>{{ $r->user->name }} <b>( {{ $r->user->points }} )</b></span>
                 @if(!$best_answer)
                    @if(Auth::id() == $d->user->id)
-                      <a href="{{ route('discussion.best.anwser', ['id' => $r->id ])}}" class="btn btn-info btn-sm float-right">Mark as best answer</a>
+                      <a href="{{ route('discussion.best.anwser', ['id' => $r->id ])}}" class="btn btn-primary btn-sm float-right ml-2">Mark as best answer</a>
                    @endif
+                @endif
+
+                @if(Auth::id() == $r->user->id)
+                    @if(!$r->best_answer)
+                        <a href="{{ route('reply.edit', ['id' => $r->id ])}}" class="btn btn-info btn-sm float-right">Edit reply</a>
+                    @endif
                 @endif
             </div>
 
@@ -80,9 +88,9 @@
 
             <div class="card-footer">
                 @if($r->is_liked_by_auth_user())
-                    <a href="{{ route('reply.unlike', ['id' => $r->id ]) }}" class="btn btn-danger">Unlike <span class="badge badge-light">{{ $r->likes->count()}}</span></a>
+                    <a href="{{ route('reply.unlike', ['id' => $r->id ]) }}" class="btn btn-danger btn-sm">Unlike <span class="badge badge-light">{{ $r->likes->count()}}</span></a>
                 @else
-                    <a href="{{ route('reply.like', ['id' => $r->id ]) }}" class="btn btn-success">Like <span class="badge badge-light">{{ $r->likes->count()}}</span></a>
+                    <a href="{{ route('reply.like', ['id' => $r->id ]) }}" class="btn btn-success btn-sm">Like <span class="badge badge-light">{{ $r->likes->count()}}</span></a>
                 @endif
             </div>
     </div>
