@@ -13,7 +13,7 @@
                
                 @if(Auth::id() == $d->user->id )
                     @if(!$d->hasBestAnswer())
-                        <a href="{{ route('discussion.edit', ['slug' => $d->slug ]) }}" class="btn btn-primary btn-sm float-right ml-2">Update</a>  
+                        <a href="{{ route('discussion.edit', ['slug' => $d->slug ]) }}" class="btn btn-primary btn-sm float-right ml-2">Edit</a>  
                     @endif
                 @endif
 
@@ -30,7 +30,7 @@
                 </h4> 
                 <hr>
                 <p class="text-center">
-                    {{ $d->content }}
+                    {!! Markdown::convertToHtml($d->content) !!}
                 </p>
 
                 <hr>
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="card-body">
-                            {{ $best_answer->content}}
+                            {!! Markdown::convertToHtml($best_answer->content) !!}
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
 
             <div class="card-body">
                 <p class="text-center">
-                    {{ $r->content }}
+                    {!! Markdown::convertToHtml($r->content) !!}
                 </p>
             </div>
 
